@@ -6,7 +6,7 @@
         <v-icon right>mdi-github</v-icon></v-btn
       >
       <v-btn text rounded color="white" class="my-2"
-        >Report<v-icon right>mdi-flag</v-icon></v-btn
+        >Disclaimer<v-icon right>mdi-exclamation-thick</v-icon></v-btn
       >
       <v-btn text rounded color="white" class="my-2"
         >Contact<v-icon right>mdi-email</v-icon></v-btn

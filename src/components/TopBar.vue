@@ -60,8 +60,8 @@
             Create
           </v-list-item>
           <v-list-item link>
-            <v-icon left>mdi-account</v-icon>
-            Profile
+            <v-icon left>mdi-newspaper-variant-multiple</v-icon>
+            My Articles
           </v-list-item>
           <v-list-item link @click="$router.push('/signOut')">
             <v-icon left>mdi-logout</v-icon>

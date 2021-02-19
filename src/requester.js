@@ -100,6 +100,14 @@ let createArticle = async function(
   return res;
 };
 
+let deleteArticle = async function(accessToken, id) {
+  let res = await fetchAsJSON(`${apiUrl}/articles/${id}?`, {
+      method: "DELETE",
+      headers: { Authorization: "Bearer " + accessToken },
+  });
+  return res;
+}
+
 let uploadImage = async function(accessToken, image) {
   let data = new FormData();
   data.append("image", image);
@@ -123,4 +131,5 @@ export {
   searchArticles,
   createArticle,
   uploadImage,
+  deleteArticle
 };

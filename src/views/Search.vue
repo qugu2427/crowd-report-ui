@@ -1,14 +1,31 @@
 <template>
   <div class="search">
     <!-- Search Bar -->
-    <v-container style="max-width: 700px">
+    <v-container style="max-width: 800px">
+      <div class="d-flex">
+        <v-select
+          filled
+          rounded
+          label="sort by"
+          append-icon="mdi-sort"
+          :items="sortBy"
+          class="mr-2"
+        ></v-select>
+        <v-select
+          filled
+          rounded
+          label="from last"
+          :items="sortTime"
+          append-icon="mdi-clock"
+        ></v-select>
+      </div>
       <v-form
         @submit.prevent
         @submit="
           home = false;
           currentSearch = search;
         "
-        class="d-flex"
+        class="d-flex mt-n5"
       >
         <v-btn
           filled
@@ -82,6 +99,8 @@ export default {
       currentSearch: "",
       tags: [],
       home: true,
+      sortBy: ["Best", "Newest", "Most Hearted", "Most Viewed"],
+      sortTime: ["1 Day", "1 Week", "1 Month", "1 Year", "All Time"],
     };
   },
   async mounted() {

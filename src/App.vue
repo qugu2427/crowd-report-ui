@@ -25,6 +25,7 @@
         @signIn="handleSignIn"
         @signOut="handleSignOut"
         :signedIn="topBar.signedIn"
+        :googleId="googleId"
       ></router-view>
     </v-main>
     <Footer></Footer>
@@ -43,6 +44,7 @@ export default {
   },
   data() {
     return {
+      googleId: "",
       error: {
         show: false,
         name: null,
@@ -58,18 +60,19 @@ export default {
     };
   },
   methods: {
-    handleError: function (error) {
+    handleError: function(error) {
       this.error.show = true;
       this.error.name = error.name;
       this.error.message = error.message;
     },
-    handleSignIn: async function () {
+    handleSignIn: async function() {
       this.topBar.loading = true;
       if (this.$cookies.isKey("accessToken")) {
         let res = await fetchUserData(this.$cookies.get("accessToken"));
         if (res.err != null) {
           this.handleError({ name: res.err.name, message: res.err.message });
         } else {
+          this.googleId = res.data.id;
           this.topBar.name = res.data.name;
           this.topBar.picture = res.data.picture;
           this.topBar.signedIn = true;
@@ -77,7 +80,7 @@ export default {
       }
       this.topBar.loading = false;
     },
-    handleSignOut: function () {
+    handleSignOut: function() {
       this.topBar.signedIn = false;
     },
   },
@@ -90,6 +93,7 @@ export default {
         this.$cookies.remove("accessToken");
       } else {
         // this.signedIn = true
+        this.googleId = res.data.id;
         this.topBar.name = res.data.name;
         this.topBar.picture = res.data.picture;
         this.topBar.signedIn = true;

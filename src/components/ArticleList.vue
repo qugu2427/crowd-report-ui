@@ -7,6 +7,7 @@
       :author="article.author"
       :title="article.title"
       :tags="article.tags"
+      :views="article.views"
       :imageUrl="article.imageUrl"
       :created="dateAsString(article.created)"
     ></ArticlePreview>

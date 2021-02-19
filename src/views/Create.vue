@@ -1,5 +1,6 @@
 <template>
   <div class="create">
+    <!-- Uploading image overlay -->
     <v-overlay :value="uploading">
       <span class="mx-2 font-weight-medium">uploading {{ uploadingFile }}</span>
       <v-progress-circular
@@ -10,6 +11,7 @@
         indeterminate
       ></v-progress-circular>
     </v-overlay>
+    <!-- Publishing loader -->
     <div class="text-center my-5" v-if="publishing">
       <v-progress-circular
         :size="70"
@@ -19,8 +21,10 @@
         indeterminate
       ></v-progress-circular>
     </div>
+    <!-- Main content -->
     <v-container color="white" style="max-width: 700px" v-else>
       <div v-if="signedIn">
+        <!-- Preview -->
         <div v-if="preview">
           <v-btn
             depressed
@@ -38,7 +42,9 @@
             :body="body"
           ></ArticleContent>
         </div>
+        <!-- Create form -->
         <div v-else>
+          <!-- Title input -->
           <v-text-field
             label="title"
             v-model="title"
@@ -53,7 +59,7 @@
               <v-icon color="success" v-else>mdi-check-circle</v-icon>
             </template>
           </v-text-field>
-
+          <!-- Preview image uplaod -->
           <v-file-input
             label="preview image"
             v-model="prevImage"
@@ -71,7 +77,7 @@
               <v-icon color="success" v-else>mdi-check-circle</v-icon>
             </template>
           </v-file-input>
-
+          <!-- WYSIWYG editor -->
           <VueEditor
             useCustomImageHandler
             @image-added="handleImageAdded"
@@ -100,7 +106,7 @@
               <v-icon color="success" v-else>mdi-check-circle</v-icon>
             </template>
           </v-text-field>
-
+          <!-- Tags select -->
           <v-select
             :items="optionTags"
             v-model="tags"
@@ -119,14 +125,14 @@
               <v-icon color="success" v-else>mdi-check-circle</v-icon>
             </template>
           </v-select>
-
+          <!-- Captcha -->
           <VueRecaptcha
             sitekey="6Ld0GUMaAAAAAAAtUGrAI3xA0C1CEHHA22y8FByn"
             @verify="verifyHandler"
             @expired="expireHandler"
             class="mb-5"
           ></VueRecaptcha>
-
+          <!-- Publish and preview buttons -->
           <div class="mb-5">
             <v-btn
               depressed
@@ -184,17 +190,19 @@ export default {
         [{ color: [] }, { background: [] }],
         ["image", "video"],
       ],
-      titleRgx: /^.{20,200}$/,
-      imageRgx: /^.{1,75}$/,
-      tagsRgx: /^.{1,200}$/,
+      titleRgx: /^.{15,75}$/,
+      imageRgx: /^.{15,75}$/,
+      tagsRgx: /^.{1,75}$/,
       bodyRgx: /^.{300,10000}$/,
       captchaResponse: "",
       publishing: false,
       uploading: false,
       uploadingFile: "",
+      editID: null,
     };
   },
   computed: {
+    // Validators
     titleValid: function() {
       return this.titleRgx.test(this.title);
     },
@@ -207,12 +215,6 @@ export default {
     tagsValid: function() {
       return this.tagsRgx.test(this.tags.join(","));
     },
-    titleHint: function() {
-      if (!this.titleValid) {
-        return `Title must be between 20 and 50 characters (${this.title.length})`;
-      }
-      return "";
-    },
     articleValid: function() {
       return (
         this.titleValid &&
@@ -221,6 +223,13 @@ export default {
         this.tagsValid &&
         this.captchaResponse.length > 0
       );
+    },
+    // Hints
+    titleHint: function() {
+      if (!this.titleValid) {
+        return `Title must be between 20 and 50 characters (${this.title.length})`;
+      }
+      return "";
     },
     prevImageHint: function() {
       if (!this.prevImageValid) {
@@ -295,6 +304,7 @@ export default {
     },
   },
   async mounted() {
+    // Get tags
     let res = await fetchTags();
     if (res.err != null) {
       this.$emit("errored", { name: res.err.name, message: res.err.message });

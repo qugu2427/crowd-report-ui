@@ -12,6 +12,12 @@
         }}</v-card-title>
         <div class="text-subtitle-2 font-weight-light">{{ created }}</div>
         <div class="text-subtitle-2 font-weight-light">{{ author }}</div>
+        <div class="text-subtitle-2 font-weight-light">
+          <v-icon>mdi-eye</v-icon>
+          {{ views }}
+          <v-icon color="pink" class="ml-3">mdi-heart</v-icon>
+          0
+        </div>
       </div>
     </v-card>
   </router-link>
@@ -25,6 +31,7 @@ export default {
     imageUrl: String,
     title: String,
     tags: Array,
+    views: Number,
     created: String,
   },
 };
