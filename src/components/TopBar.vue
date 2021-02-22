@@ -9,6 +9,7 @@
       <v-app-bar-nav-icon
         class="hidden-md-and-up"
         @click.stop="drawer = !drawer"
+        aria-label="navigate button"
       ></v-app-bar-nav-icon>
 
       <router-link to="/" class="text-decoration-none">
@@ -47,9 +48,9 @@
 
       <v-menu offset-y v-if="signedIn && !loading">
         <template v-slot:activator="{ on, attrs }">
-          <v-btn text v-bind="attrs" v-on="on">
+          <v-btn text v-bind="attrs" v-on="on" aria-label="profile button">
             <v-avatar size="36" class="mx-2">
-              <img :src="picture" />
+              <img :src="picture" alt="avatar" />
             </v-avatar>
             {{ name }}
           </v-btn>

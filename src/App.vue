@@ -25,6 +25,7 @@
         @signIn="handleSignIn"
         @signOut="handleSignOut"
         :signedIn="topBar.signedIn"
+        :accessToken="accessToken"
         :googleId="googleId"
       ></router-view>
     </v-main>
@@ -45,6 +46,7 @@ export default {
   data() {
     return {
       googleId: "",
+      accessToken: "",
       error: {
         show: false,
         name: null,
@@ -65,41 +67,27 @@ export default {
       this.error.name = error.name;
       this.error.message = error.message;
     },
-    handleSignIn: async function() {
+    handleSignIn: async function(accessToken) {
       this.topBar.loading = true;
-      if (this.$cookies.isKey("accessToken")) {
-        let res = await fetchUserData(this.$cookies.get("accessToken"));
-        if (res.err != null) {
-          this.handleError({ name: res.err.name, message: res.err.message });
-        } else {
-          this.googleId = res.data.id;
-          this.topBar.name = res.data.name;
-          this.topBar.picture = res.data.picture;
-          this.topBar.signedIn = true;
-        }
-      }
-      this.topBar.loading = false;
-    },
-    handleSignOut: function() {
-      this.topBar.signedIn = false;
-    },
-  },
-  async mounted() {
-    // If signed in get user dat
-    if (this.$cookies.isKey("accessToken")) {
-      let res = await fetchUserData(this.$cookies.get("accessToken"));
+      this.accessToken = accessToken;
+      let res = await fetchUserData(accessToken);
       if (res.err != null) {
-        console.log("Sign in failed.");
-        this.$cookies.remove("accessToken");
+        this.handleError({ name: res.err.name, message: res.err.message });
       } else {
-        // this.signedIn = true
         this.googleId = res.data.id;
         this.topBar.name = res.data.name;
         this.topBar.picture = res.data.picture;
         this.topBar.signedIn = true;
       }
-    }
-
+      this.topBar.loading = false;
+    },
+    handleSignOut: function() {
+      this.googleId = "";
+      this.accessToken = "";
+      this.topBar.signedIn = false;
+    },
+  },
+  async mounted() {
     // Get login url
     let res = await fetchLoginUrl();
     if (res.err != null) {

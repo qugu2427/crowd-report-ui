@@ -23,16 +23,7 @@ export default {
       if (res.err != null) {
         this.$emit("errored", { name: res.err.name, message: res.err.message });
       } else {
-        this.$cookies.set(
-          "accessToken",
-          res.data.accessToken,
-          "30min",
-          null,
-          null,
-          null,
-          "Strict"
-        );
-        this.$emit("signIn");
+        this.$emit("signIn", res.data.accessToken);
       }
     }
     this.$router.push("/");

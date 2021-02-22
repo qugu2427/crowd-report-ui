@@ -169,6 +169,7 @@ export default {
   name: "Create",
   props: {
     signedIn: { type: Boolean, default: false },
+    accessToken: { type: String, default: "" },
   },
   components: {
     VueEditor,
@@ -255,13 +256,10 @@ export default {
   methods: {
     publish: async function() {
       this.publishing = true;
-      let res = await uploadImage(
-        this.$cookies.get("accessToken"),
-        this.prevImage
-      );
+      let res = await uploadImage(this.accessToken, this.prevImage);
       if (res.err == null) {
         res = await createArticle(
-          this.$cookies.get("accessToken"),
+          this.accessToken,
           res.data.url,
           this.title,
           this.body,
@@ -286,7 +284,7 @@ export default {
     ) {
       this.uploading = true;
       this.uploadingFile = file.name;
-      let res = await uploadImage(this.$cookies.get("accessToken"), file);
+      let res = await uploadImage(this.accessToken, file);
       if (res.err != null) {
         alert(res.err.name);
       } else {

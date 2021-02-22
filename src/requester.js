@@ -122,6 +122,28 @@ let uploadImage = async function(accessToken, image) {
   return res;
 };
 
+let toggleHeart = async function(accessToken, articleId) {
+  let data = new FormData();
+  data.append("articleId", articleId);
+    let res = await fetchAsJSON(
+    `${apiUrl}/toggleHeart`,
+    {
+      method: "POST",
+      headers: { Authorization: "Bearer " + accessToken },
+      body: data,
+    }
+  );
+  return res;
+}
+
+let fetchHearted = async function(accessToken, articleId) {
+  let res = await fetchAsJSON(`${apiUrl}/articles/${articleId}/hearted`, {
+    method: "GET",
+    headers: { Authorization: "Bearer " + accessToken },
+  });
+  return res;
+}
+
 export {
   fetchLoginUrl,
   fetchAccessToken,
@@ -131,5 +153,7 @@ export {
   searchArticles,
   createArticle,
   uploadImage,
-  deleteArticle
+  deleteArticle,
+  toggleHeart,
+  fetchHearted
 };

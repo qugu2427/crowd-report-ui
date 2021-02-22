@@ -8,6 +8,7 @@
       :title="article.title"
       :tags="article.tags"
       :views="article.views"
+      :hearts="article.hearts"
       :imageUrl="article.imageUrl"
       :created="dateAsString(article.created)"
     ></ArticlePreview>
@@ -72,7 +73,7 @@ export default {
       this.$emit("errored", { name: res.err.name, message: res.err.message });
     } else {
       if (res.data.count > 0) {
-        this.articles = this.articles.concat(res.data.articles);
+        this.articles = res.data.articles;
       }
       if (res.data.count < this.limit) {
         this.more = false;
@@ -96,7 +97,7 @@ export default {
         this.$emit("errored", { name: res.err.name, message: res.err.message });
       } else {
         if (res.data.count > 0) {
-          this.articles = this.articles.concat(res.data.articles);
+          this.articles = res.data.articles;
         }
         if (res.data.count < this.limit) {
           this.more = false;

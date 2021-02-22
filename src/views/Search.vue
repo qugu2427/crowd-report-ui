@@ -34,6 +34,7 @@
           color="grey lighten-3"
           class="mr-2"
           @click="home = true"
+          aria-label="home button"
           ><v-icon>mdi-home</v-icon></v-btn
         >
         <v-text-field
