@@ -42,7 +42,7 @@
 
       <v-spacer></v-spacer>
 
-      <div class="text-h5 font-italic font-weight-black">Crowd Report</div>
+      <div class="text-h5 font-weight-light">CrowdReport.me</div>
 
       <v-spacer></v-spacer>
 
@@ -60,7 +60,7 @@
             <v-icon left>mdi-pencil</v-icon>
             Create
           </v-list-item>
-          <v-list-item link>
+          <v-list-item link @click="$router.push('/myArticles')">
             <v-icon left>mdi-newspaper-variant-multiple</v-icon>
             My Articles
           </v-list-item>

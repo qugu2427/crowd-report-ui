@@ -27,13 +27,13 @@
 </template>
 
 <script>
-import { search } from "@/requester.js";
+import { fetchUserArticles } from "@/requester.js";
 import { dateAsString } from "@/helpers.js";
 import ArticlePreview from "@/components/ArticlePreview.vue";
 export default {
   name: "ArticleList",
   props: {
-    search: { type: String, default: "" },
+    accessToken: String,
     sort: { type: String, default: "popular" },
     period: { type: String, default: "week" },
     limit: { type: Number, default: 3 },
@@ -51,8 +51,8 @@ export default {
   methods: {
     dateAsString,
     showMore: async function(limit) {
-      let res = await search(
-        this.search,
+      let res = await fetchUserArticles(
+        this.accessToken,
         this.sort,
         this.period,
         this.limit,
@@ -73,8 +73,8 @@ export default {
       this.loading = true;
       this.articles = [];
       this.more = false;
-      let res = await search(
-        this.search,
+      let res = await fetchUserArticles(
+        this.accessToken,
         this.sort,
         this.period,
         this.limit,
@@ -96,8 +96,8 @@ export default {
     },
   },
   async mounted() {
-    let res = await search(
-      this.search,
+    let res = await fetchUserArticles(
+      this.accessToken,
       this.sort,
       this.period,
       this.limit,
@@ -118,9 +118,6 @@ export default {
     this.loading = false;
   },
   watch: {
-    search: async function() {
-      await this.refreshSearch();
-    },
     sort: async function() {
       await this.refreshSearch();
     },

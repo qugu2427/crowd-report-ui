@@ -21,16 +21,11 @@
       <li>False and/or Uncited Data</li>
       <li>Copyrighted Material</li>
     </ul>
+
     <p>Articles wich contain prohibited content will be removed.</p>
-    <h5 class="text-h5">Report</h5>
-    <p>
-      To report an article email *@*.com. Please include the article id or link
-      to article in your report.
-    </p>
     <h5 class="text-h5">Contact</h5>
     <p>
-      To contact us for any reason other than reporting and article, email
-      *@*.com.
+      To contact us for any reason, email *@*.com.
     </p>
   </v-container>
 </template>

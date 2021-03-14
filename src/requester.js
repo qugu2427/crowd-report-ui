@@ -52,6 +52,16 @@ let fetchUserData = async function(accessToken) {
   return res;
 };
 
+let fetchUserArticles = async function(accessToken, sort, period, limit, offset) {
+  let res = await fetchAsJSON(
+    `${apiUrl}/userArticles?sort=${sort}&period=${period}&limit=${limit}&offset=${offset}`, { 
+      method: "GET",
+      headers: { Authorization: "Bearer " + accessToken },
+    },
+  );
+  return res;
+}
+
 let fetchArticle = async function(id) {
   let res = await fetchAsJSON(`${apiUrl}/articles/${id}`, {
     method: "GET",
@@ -60,17 +70,17 @@ let fetchArticle = async function(id) {
 };
 
 let fetchTags = async function() {
-  let res = await fetchAsJSON(`${apiUrl}/fetchTags`, { method: "GET" });
+  let res = await fetchAsJSON(`${apiUrl}/tags`, { method: "GET" });
   return res;
 };
 
-let searchArticles = async function(search, limit = 8, offset = 0) {
+let search = async function(q, sort, period, limit, offset) {
   let res = await fetchAsJSON(
-    `${apiUrl}/searchArticles?search=${search}&limit=${limit}&offset=${offset}`,
+    `${apiUrl}/search?q=${q}&sort=${sort}&period=${period}&limit=${limit}&offset=${offset}`,
     { method: "GET" }
   );
   return res;
-};
+}
 
 let createArticle = async function(
   accessToken,
@@ -87,7 +97,7 @@ let createArticle = async function(
   data.append("tags", tags.join(","));
   data.append("captcha", captcha);
   let res = await fetchAsJSON(
-    `${apiUrl}/createArticle`,
+    `${apiUrl}/create`,
     {
       method: "POST",
       headers: {
@@ -122,11 +132,11 @@ let uploadImage = async function(accessToken, image) {
   return res;
 };
 
-let toggleHeart = async function(accessToken, articleId) {
+let heart = async function(accessToken, articleId) {
   let data = new FormData();
   data.append("articleId", articleId);
     let res = await fetchAsJSON(
-    `${apiUrl}/toggleHeart`,
+    `${apiUrl}/heart`,
     {
       method: "POST",
       headers: { Authorization: "Bearer " + accessToken },
@@ -136,7 +146,7 @@ let toggleHeart = async function(accessToken, articleId) {
   return res;
 }
 
-let fetchHearted = async function(accessToken, articleId) {
+let hearted = async function(accessToken, articleId) {
   let res = await fetchAsJSON(`${apiUrl}/articles/${articleId}/hearted`, {
     method: "GET",
     headers: { Authorization: "Bearer " + accessToken },
@@ -148,12 +158,13 @@ export {
   fetchLoginUrl,
   fetchAccessToken,
   fetchUserData,
+  fetchUserArticles,
   fetchArticle,
   fetchTags,
-  searchArticles,
+  search,
   createArticle,
   uploadImage,
   deleteArticle,
-  toggleHeart,
-  fetchHearted
+  heart,
+  hearted
 };

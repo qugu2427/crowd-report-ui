@@ -1,11 +1,13 @@
 <template>
   <div>
+    <!-- Not found container -->
     <div class="text-center my-5" v-if="notFound">
       <h1 class="text-h3 my-3 font-weight-bold font-italic">404</h1>
       <h1 class="text-h3 my-3 font-weight-bold font-italic">
         Article Not Found
       </h1>
     </div>
+    <!-- Found container -->
     <div v-else>
       <ArticleContent
         :title="title"
@@ -46,6 +48,8 @@
         >
           <v-icon color="white">mdi-reddit</v-icon>
         </v-btn>
+
+        <!-- Heart, search, report buttons -->
         <div class="my-4">
           <!-- Heart Button -->
           <v-btn
@@ -74,16 +78,23 @@
             <v-icon right>mdi-heart-plus</v-icon>
           </v-btn>
           <!-- Search author button -->
-          <v-btn small outlined class="mx-2">
-            {{ author }}
-            <v-icon right>mdi-account-search</v-icon>
-          </v-btn>
-          <!-- Report button -->
-          <v-btn small outlined class="mx-2">
+          <router-link
+            :to="'/?search=' + author"
+            style="text-decoration: none;"
+          >
+            <v-btn small outlined class="mx-2">
+              {{ author }}
+              <v-icon right>mdi-account-search</v-icon>
+            </v-btn>
+          </router-link>
+          <!-- Report button (disabled until feature is added) -->
+          <!-- <v-btn small outlined class="mx-2">
             report article
             <v-icon right>mdi-alert-octagram</v-icon>
-          </v-btn>
+          </v-btn> -->
         </div>
+
+        <!-- Delete buton -->
         <v-btn
           small
           outlined
@@ -101,15 +112,9 @@
 </template>
 
 <script>
-import {
-  fetchArticle,
-  deleteArticle,
-  toggleHeart,
-  fetchHearted,
-} from "@/requester.js";
+import { fetchArticle, deleteArticle, heart, hearted } from "@/requester.js";
 import ArticleContent from "@/components/ArticleContent.vue";
 export default {
-  name: "Home",
   components: {
     ArticleContent,
   },
@@ -149,7 +154,7 @@ export default {
         return;
       }
       this.hearting = true;
-      let res = await toggleHeart(this.accessToken, this.$route.params.id);
+      let res = await heart(this.accessToken, this.$route.params.id);
       if (res.err != null) {
         this.$emit("errored", { name: res.err.name, message: res.err.message });
       } else {
@@ -182,7 +187,7 @@ export default {
       this.hearts = res.data.hearts;
     }
     if (this.signedIn) {
-      res = await fetchHearted(this.accessToken, this.$route.params.id);
+      res = await hearted(this.accessToken, this.$route.params.id);
       if (res.err != null) {
         this.$emit("errored", { name: res.err.name, message: res.err.message });
       } else {

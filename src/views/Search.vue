@@ -6,16 +6,18 @@
         <v-select
           filled
           rounded
-          label="sort by"
+          label="sort"
           append-icon="mdi-sort"
-          :items="sortBy"
+          :items="sort"
+          v-model="sortSelect"
           class="mr-2"
         ></v-select>
         <v-select
           filled
           rounded
-          label="from last"
-          :items="sortTime"
+          label="period"
+          :items="period"
+          v-model="periodSelect"
           append-icon="mdi-clock"
         ></v-select>
       </div>
@@ -53,13 +55,20 @@
     >
       <div class="flex-grow-1" style="max-width: 600px;">
         <div v-if="home" class="text-left">
+          <h6 class="text-h6">Hot</h6>
+          <ArticleList sort="popular" period="day" :limit="3"></ArticleList>
           <h6 class="text-h6">New</h6>
-          <ArticleList sort="new" :limit="6"></ArticleList>
+          <ArticleList sort="new" period="day" :limit="3"></ArticleList>
           <!-- <Ad></Ad> -->
         </div>
         <div class="text-left" v-else>
           <h6 class="text-h6">Search for "{{ currentSearch }}"</h6>
-          <ArticleList :search="currentSearch" :limit="6"></ArticleList>
+          <ArticleList
+            :search="currentSearch"
+            :sort="sortSelect"
+            :period="periodSelect"
+            :limit="6"
+          ></ArticleList>
         </div>
       </div>
 
@@ -100,8 +109,10 @@ export default {
       currentSearch: "",
       tags: [],
       home: true,
-      sortBy: ["Best", "Newest", "Most Hearted", "Most Viewed"],
-      sortTime: ["1 Day", "1 Week", "1 Month", "1 Year", "All Time"],
+      sort: ["popular", "new", "hearted", "viewed"],
+      sortSelect: "popular",
+      period: ["day", "week", "month", "year", "all time"],
+      periodSelect: "day",
     };
   },
   async mounted() {

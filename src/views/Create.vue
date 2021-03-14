@@ -191,7 +191,7 @@ export default {
         [{ color: [] }, { background: [] }],
         ["image", "video"],
       ],
-      titleRgx: /^.{15,75}$/,
+      titleRgx: /^\S.{13,73}\S$/,
       imageRgx: /^.{15,75}$/,
       tagsRgx: /^.{1,75}$/,
       bodyRgx: /^.{300,10000}$/,
