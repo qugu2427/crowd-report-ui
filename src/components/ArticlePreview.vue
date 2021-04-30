@@ -5,7 +5,7 @@
     max-width="700"
     :aria-label="title"
   >
-    <v-card class="d-flex d-grow-0 mb-3" tile>
+    <v-card class="d-flex d-grow-0 mb-3" tile elevation="0" id="card">
       <v-img
         :src="imageUrl"
         height="125"
@@ -13,7 +13,7 @@
         max-width="200"
         alt="preview image"
       ></v-img>
-      <div class="text-left pl-2 pt-2">
+      <div class="text-left pl-2 pt-2" id="preview-info">
         <v-card-title class="font-weight-light pt-0 pl-0 pb-0">{{
           title.length > 40 ? title.substring(0, 40) + "..." : title
         }}</v-card-title>
@@ -45,4 +45,11 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+#card {
+  transition: 0.4s;
+}
+#card:hover {
+  background-color: rgb(250, 250, 250);
+}
+</style>

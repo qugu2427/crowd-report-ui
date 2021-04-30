@@ -56,9 +56,9 @@
       <div class="flex-grow-1" style="max-width: 600px;">
         <div v-if="home" class="text-left">
           <h6 class="text-h6">Hot</h6>
-          <ArticleList sort="popular" period="day" :limit="3"></ArticleList>
+          <ArticleList sort="popular" period="month" :limit="3"></ArticleList>
           <h6 class="text-h6">New</h6>
-          <ArticleList sort="new" period="day" :limit="3"></ArticleList>
+          <ArticleList sort="new" period="all time" :limit="3"></ArticleList>
           <!-- <Ad></Ad> -->
         </div>
         <div class="text-left" v-else>
@@ -112,7 +112,7 @@ export default {
       sort: ["popular", "new", "hearted", "viewed"],
       sortSelect: "popular",
       period: ["day", "week", "month", "year", "all time"],
-      periodSelect: "day",
+      periodSelect: "week",
     };
   },
   async mounted() {

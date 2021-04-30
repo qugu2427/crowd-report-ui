@@ -15,7 +15,7 @@
         >
       </router-link>
       <!-- Contact Button -->
-      <a href="mailto:someone@yoursite.com">
+      <a href="mailto:feature_not_yet_available@yoursite.com">
         <v-btn text rounded color="white" class="my-2"
           >Contact<v-icon right>mdi-email</v-icon></v-btn
         >
@@ -27,10 +27,6 @@
   </v-footer>
 </template>
 
-<script>
-export default {
-  name: "Footer",
-};
-</script>
+<script></script>
 
 <style></style>

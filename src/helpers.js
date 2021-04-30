@@ -30,4 +30,16 @@ let dateAsString = function(timestamp) {
   } ${d.getDate()} ${d.getFullYear()}, ${hour}:${minutes} ${period}`;
 };
 
-export { dateAsString };
+let escapeAuthor = function(author){
+  let newStr = "";
+  for(let i = 0;i < author.length;i++){
+    if(author.charCodeAt(i) > 255){
+      newStr += "_";
+    } else {
+      newStr += author.charAt(i);
+    }
+  }
+  return newStr;
+}
+
+export { dateAsString, escapeAuthor };

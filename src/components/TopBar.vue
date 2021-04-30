@@ -13,28 +13,28 @@
       ></v-app-bar-nav-icon>
 
       <router-link to="/" class="text-decoration-none">
-        <v-btn text class="hidden-sm-and-down">
+        <v-btn text tile class="hidden-sm-and-down">
           <v-icon left>mdi-magnify</v-icon>
           Search
         </v-btn>
       </router-link>
 
       <router-link to="/tags" class="text-decoration-none">
-        <v-btn text class="hidden-sm-and-down">
+        <v-btn text tile class="hidden-sm-and-down">
           <v-icon left>mdi-tag-multiple</v-icon>
           Tags
         </v-btn>
       </router-link>
 
       <router-link to="/create" class="text-decoration-none">
-        <v-btn text class="hidden-sm-and-down">
+        <v-btn text tile class="hidden-sm-and-down">
           <v-icon left>mdi-pencil</v-icon>
           Create
         </v-btn>
       </router-link>
 
       <router-link to="/meta" class="text-decoration-none">
-        <v-btn text class="hidden-sm-and-down">
+        <v-btn text tile class="hidden-sm-and-down">
           <v-icon left>mdi-information-variant</v-icon>
           Meta
         </v-btn>
@@ -42,7 +42,9 @@
 
       <v-spacer></v-spacer>
 
-      <div class="text-h5 font-weight-light">CrowdReport.me</div>
+      <div class="text-h5" id="bar-title">
+        CrowdReport.me
+      </div>
 
       <v-spacer></v-spacer>
 
@@ -71,7 +73,10 @@
         </v-list>
       </v-menu>
       <a :href="loginUrl" style="text-decoration: none" v-else-if="!loading">
-        <v-btn text> Sign In </v-btn>
+        <v-btn outlined>
+          <v-icon left>mdi-google</v-icon>
+          Sign In
+        </v-btn>
       </a>
     </v-app-bar>
 
@@ -120,6 +125,7 @@
 </template>
 
 <script>
+import { escapeAuthor } from "@/helpers.js";
 export default {
   name: "TopBar",
   props: {
@@ -129,6 +135,9 @@ export default {
     loginUrl: { type: String, default: "" },
     loading: { type: Boolean, default: true },
   },
+  methods: {
+    escapeAuthor,
+  },
   data() {
     return {
       drawer: false,
@@ -136,6 +145,7 @@ export default {
     };
   },
   mounted() {
+    this.name = escapeAuthor(this.name);
     if (this.name.length > 15) {
       this.name = this.name.substring(0, 14);
     }
@@ -143,4 +153,10 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+#bar-title {
+  font-family: "Roboto" !important;
+  font-weight: bolder;
+}
+</style>

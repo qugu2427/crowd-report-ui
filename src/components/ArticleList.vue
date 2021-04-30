@@ -4,7 +4,7 @@
       v-for="(article, index) in articles"
       :key="`${index}-${article.id}-${Date.now()}-${Math.floor(Math.random())}`"
       :id="article.id + ''"
-      :author="article.author"
+      :author="escapeAuthor(article.author)"
       :title="article.title"
       :tags="article.tags"
       :views="article.views"
@@ -28,7 +28,7 @@
 
 <script>
 import { search } from "@/requester.js";
-import { dateAsString } from "@/helpers.js";
+import { dateAsString, escapeAuthor } from "@/helpers.js";
 import ArticlePreview from "@/components/ArticlePreview.vue";
 export default {
   name: "ArticleList",
@@ -50,6 +50,7 @@ export default {
   },
   methods: {
     dateAsString,
+    escapeAuthor,
     showMore: async function(limit) {
       let res = await search(
         this.search,
