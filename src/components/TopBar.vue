@@ -42,8 +42,8 @@
 
       <v-spacer></v-spacer>
 
-      <div class="text-h5" id="bar-title">
-        CrowdReport.me
+      <div class="text-h5 d-flex align-center" id="bar-title">
+        <img src="@/assets/head-logo.png" height="48px" alt="cr-logo" />
       </div>
 
       <v-spacer></v-spacer>

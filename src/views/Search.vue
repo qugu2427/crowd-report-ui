@@ -55,8 +55,8 @@
     >
       <div class="flex-grow-1" style="max-width: 600px;">
         <div v-if="home" class="text-left">
-          <h6 class="text-h6">Hot</h6>
-          <ArticleList sort="popular" period="month" :limit="3"></ArticleList>
+          <!-- <h6 class="text-h6">Hot</h6>
+          <ArticleList sort="popular" period="month" :limit="3"></ArticleList> -->
           <h6 class="text-h6">New</h6>
           <ArticleList sort="new" period="all time" :limit="3"></ArticleList>
           <!-- <Ad></Ad> -->
