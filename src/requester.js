@@ -1,5 +1,4 @@
-const apiUrl = "http://192.168.1.37:4000";
-
+const apiUrl = "http://api.crowdreport.me";
 let fetchAsJSON = async function(url, options) {
   let err = null;
   let data = null;
