@@ -5,19 +5,33 @@
     max-width="700"
     :aria-label="title"
   >
-    <v-card class="d-flex d-grow-0 mb-3" tile elevation="0" id="card">
+    <v-card
+      class="d-flex flex-column flex-sm-row d-grow-0 mb-3"
+      tile
+      elevation="0"
+      id="card"
+    >
       <v-img
+        class="hidden-xs-only"
         :src="imageUrl"
         height="125"
         width="200"
         max-width="200"
         alt="preview image"
       ></v-img>
-      <div class="text-left pl-2 pt-2" id="preview-info">
+      <v-img
+        class="hidden-sm-and-up"
+        :src="imageUrl"
+        height="150"
+        width="400"
+        max-width="400"
+        alt="preview image"
+      ></v-img>
+      <div class="text-left pl-2" id="preview-info">
         <v-card-title class="font-weight-light pt-0 pl-0 pb-0">{{
-          title.length > 65 ? title.substring(0, 65) + "..." : title
+          title
         }}</v-card-title>
-        <div class="text-subtitle-2 font-weight-light">
+        <div class="text-no-wrap text-subtitle-2 font-weight-light">
           {{ author }} - {{ created }}
         </div>
         <div class="text-subtitle-2 font-weight-light">
@@ -47,6 +61,10 @@ export default {
 </script>
 
 <style scoped>
+.v-card__text,
+.v-card__title {
+  word-break: normal;
+}
 #card {
   transition: 0.4s;
 }

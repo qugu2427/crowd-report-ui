@@ -53,10 +53,10 @@
       class="d-flex justify-center flex-wrap mt-n5"
       style="max-width: 800px"
     >
-      <div class="flex-grow-1" style="max-width: 600px;">
+      <div class="flex-grow-1" style="max-width: 800px;">
         <div v-if="home" class="text-left">
-          <!-- <h6 class="text-h6">Hot</h6>
-          <ArticleList sort="popular" period="month" :limit="3"></ArticleList> -->
+          <h6 class="text-h6">Hot</h6>
+          <ArticleList sort="popular" period="month" :limit="3"></ArticleList>
           <h6 class="text-h6">New</h6>
           <ArticleList sort="new" period="all time" :limit="3"></ArticleList>
           <!-- <Ad></Ad> -->
@@ -73,7 +73,7 @@
       </div>
 
       <!-- Tag List -->
-      <div elevation="1" class="px-5 text-left hidden-sm-and-down">
+      <!-- <div elevation="1" class="px-5 text-left hidden-sm-and-down">
         <h6 class="text-h6">Tags</h6>
         <div v-for="tag in tags" :key="tag">
           <v-chip
@@ -88,7 +88,7 @@
             {{ tag }}
           </v-chip>
         </div>
-      </div>
+      </div> -->
     </v-container>
   </div>
 </template>
