@@ -1,4 +1,4 @@
-const apiUrl = "http://api.crowdreport.me";
+const apiUrl = "https://api.crowdreport.me";
 let fetchAsJSON = async function(url, options) {
   let err = null;
   let data = null;
