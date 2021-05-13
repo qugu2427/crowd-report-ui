@@ -15,10 +15,11 @@
       ></v-img>
       <div class="text-left pl-2 pt-2" id="preview-info">
         <v-card-title class="font-weight-light pt-0 pl-0 pb-0">{{
-          title.length > 40 ? title.substring(0, 40) + "..." : title
+          title.length > 65 ? title.substring(0, 65) + "..." : title
         }}</v-card-title>
-        <div class="text-subtitle-2 font-weight-light">{{ created }}</div>
-        <div class="text-subtitle-2 font-weight-light">{{ author }}</div>
+        <div class="text-subtitle-2 font-weight-light">
+          {{ author }} - {{ created }}
+        </div>
         <div class="text-subtitle-2 font-weight-light">
           <v-icon>mdi-eye</v-icon>
           {{ views }}
