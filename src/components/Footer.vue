@@ -15,7 +15,7 @@
         >
       </router-link>
       <!-- Contact Button -->
-      <a href="mailto:feature_not_yet_available@yoursite.com">
+      <a href="mailto:feature_not_yet_available@crowdreport.me">
         <v-btn text rounded color="white" class="my-2"
           >Contact<v-icon right>mdi-email</v-icon></v-btn
         >

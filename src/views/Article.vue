@@ -1,111 +1,123 @@
 <template>
   <div>
-    <!-- Not found container -->
-    <div class="text-center my-5" v-if="notFound">
-      <h1 class="text-h3 my-3 font-weight-bold font-italic">404</h1>
-      <h1 class="text-h3 my-3 font-weight-bold font-italic">
-        Article Not Found
-      </h1>
+    <!-- Loading -->
+    <div class="text-center my-5" v-if="loading">
+      <v-progress-circular
+        :size="70"
+        :width="7"
+        color="blue darken-2"
+        class="my-5"
+        indeterminate
+      ></v-progress-circular>
     </div>
-    <!-- Found container -->
     <div v-else>
-      <ArticleContent
-        :title="title"
-        :author="author"
-        :created="created"
-        :tags="tags"
-        :imageUrl="imageUrl"
-        :body="body"
-      ></ArticleContent>
-      <div class="text-center my-1">
-        <v-btn
-          fab
-          color="#1DA1F2"
-          small
-          depressed
-          class="mx-1"
-          aria-label="twitter"
-        >
-          <v-icon color="white">mdi-twitter</v-icon>
-        </v-btn>
-        <v-btn
-          fab
-          color="#4267B2"
-          small
-          depressed
-          class="mx-1"
-          aria-label="facebook"
-        >
-          <v-icon color="white">mdi-facebook</v-icon>
-        </v-btn>
-        <v-btn
-          fab
-          color="#ff6314"
-          small
-          depressed
-          class="mx-1"
-          aria-label="reddit"
-        >
-          <v-icon color="white">mdi-reddit</v-icon>
-        </v-btn>
+      <!-- Not found container -->
+      <div class="text-center my-5" v-if="notFound">
+        <h1 class="text-h3 my-3 font-weight-bold font-italic">404</h1>
+        <h1 class="text-h3 my-3 font-weight-bold font-italic">
+          Article Not Found
+        </h1>
+      </div>
+      <!-- Found container -->
+      <div v-else>
+        <ArticleContent
+          :title="title"
+          :author="author"
+          :created="created"
+          :tags="tags"
+          :imageUrl="imageUrl"
+          :body="body"
+        ></ArticleContent>
+        <div class="text-center my-1">
+          <v-btn
+            fab
+            color="#1DA1F2"
+            small
+            depressed
+            class="mx-1"
+            aria-label="twitter"
+          >
+            <v-icon color="white">mdi-twitter</v-icon>
+          </v-btn>
+          <v-btn
+            fab
+            color="#4267B2"
+            small
+            depressed
+            class="mx-1"
+            aria-label="facebook"
+          >
+            <v-icon color="white">mdi-facebook</v-icon>
+          </v-btn>
+          <v-btn
+            fab
+            color="#ff6314"
+            small
+            depressed
+            class="mx-1"
+            aria-label="reddit"
+          >
+            <v-icon color="white">mdi-reddit</v-icon>
+          </v-btn>
 
-        <!-- Heart, search, report buttons -->
-        <div class="my-4">
-          <!-- Heart Button -->
+          <!-- Heart, search, report buttons -->
+          <div class="my-4">
+            <!-- Heart Button -->
+            <v-btn
+              small
+              outlined
+              class="mx-2"
+              color="pink"
+              @click="handleHeart()"
+              :disabled="this.hearting"
+              v-if="hearted"
+            >
+              un-heart ({{ hearts }})
+              <v-icon right>mdi-heart-minus</v-icon>
+            </v-btn>
+            <v-btn
+              small
+              dark
+              depressed
+              class="mx-2"
+              color="pink"
+              @click="handleHeart()"
+              :disabled="this.hearting"
+              v-else
+            >
+              heart ({{ hearts }})
+              <v-icon right>mdi-heart-plus</v-icon>
+            </v-btn>
+            <!-- Search author button -->
+            <router-link
+              :to="'/?search=' + author"
+              style="text-decoration: none;"
+            >
+              <v-btn small outlined class="mx-2">
+                {{ author }}
+                <v-icon right>mdi-account-search</v-icon>
+              </v-btn>
+            </router-link>
+            <!-- Report button (disabled until feature is added) -->
+            <!-- <v-btn small outlined class="mx-2">
+            report article
+            <v-icon right>mdi-alert-octagram</v-icon>
+          </v-btn> -->
+          </div>
+
+          <!-- Delete buton -->
           <v-btn
             small
             outlined
             class="mx-2"
-            color="pink"
-            @click="handleHeart()"
-            :disabled="this.hearting"
-            v-if="hearted"
+            color="error"
+            @click="handleDelete"
+            v-if="googleId == authorGoogleId"
           >
-            un-heart ({{ hearts }})
-            <v-icon right>mdi-heart-minus</v-icon>
+            delete
+            <v-icon right>mdi-delete-forever</v-icon>
           </v-btn>
-          <v-btn
-            small
-            dark
-            depressed
-            class="mx-2"
-            color="pink"
-            @click="handleHeart()"
-            :disabled="this.hearting"
-            v-else
-          >
-            heart ({{ hearts }})
-            <v-icon right>mdi-heart-plus</v-icon>
-          </v-btn>
-          <!-- Search author button -->
-          <router-link
-            :to="'/?search=' + author"
-            style="text-decoration: none;"
-          >
-            <v-btn small outlined class="mx-2">
-              {{ author }}
-              <v-icon right>mdi-account-search</v-icon>
-            </v-btn>
-          </router-link>
-          <!-- Report button (disabled until feature is added) -->
-          <!-- <v-btn small outlined class="mx-2">
-            report article
-            <v-icon right>mdi-alert-octagram</v-icon>
-          </v-btn> -->
         </div>
-
-        <!-- Delete buton -->
-        <v-btn
-          small
-          outlined
-          class="mx-2"
-          color="error"
-          @click="handleDelete"
-          v-if="googleId == authorGoogleId"
-        >
-          delete
-          <v-icon right>mdi-delete-forever</v-icon>
-        </v-btn>
       </div>
     </div>
   </div>
@@ -125,6 +137,7 @@ export default {
   },
   data() {
     return {
+      loading: true,
       notFound: false,
       title: "",
       author: "",
@@ -197,6 +210,7 @@ export default {
     } else {
       this.hearting = false;
     }
+    this.loading = false;
   },
 };
 </script>

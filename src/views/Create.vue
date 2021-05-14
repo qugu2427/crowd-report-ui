@@ -302,7 +302,7 @@ export default {
     },
   },
   async mounted() {
-    // Get tags
+    // Load tags
     let res = await fetchTags();
     if (res.err != null) {
       this.$emit("errored", { name: res.err.name, message: res.err.message });
