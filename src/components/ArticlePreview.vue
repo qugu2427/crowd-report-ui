@@ -2,37 +2,30 @@
   <router-link
     :to="'/articles/' + id"
     class="text-decoration-none"
-    max-width="700"
     :aria-label="title"
   >
     <v-card
-      class="d-flex flex-column flex-sm-row d-grow-0 mb-3"
+      class="d-flex flex-column ma-3 rounded"
       tile
-      elevation="0"
+      elevation="1"
+      max-width="350"
       id="card"
     >
       <v-img
-        class="hidden-xs-only"
         :src="imageUrl"
-        height="125"
-        width="200"
-        max-width="200"
+        height="200"
+        width="350"
         alt="preview image"
       ></v-img>
-      <v-img
-        class="hidden-sm-and-up"
-        :src="imageUrl"
-        height="150"
-        width="400"
-        max-width="400"
-        alt="preview image"
-      ></v-img>
-      <div class="text-left pl-2" id="preview-info">
+      <div class="text-left px-2 pb-2" id="preview-info">
         <v-card-title class="font-weight-light pt-0 pl-0 pb-0">{{
           title
         }}</v-card-title>
         <div class="text-no-wrap text-subtitle-2 font-weight-light">
-          {{ author }} - {{ created }}
+          {{ author }}
+        </div>
+        <div class="text-no-wrap text-subtitle-2 font-weight-light">
+          {{ created }}
         </div>
         <div class="text-subtitle-2 font-weight-light">
           <v-icon>mdi-eye</v-icon>

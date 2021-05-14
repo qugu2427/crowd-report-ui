@@ -1,7 +1,7 @@
 <template>
   <div class="search">
     <!-- Search Bar -->
-    <v-container style="max-width: 800px">
+    <v-container style="max-width: 800px;">
       <div class="d-flex">
         <v-select
           filled
@@ -49,46 +49,44 @@
       </v-form>
     </v-container>
     <!-- Article list -->
-    <v-container
-      class="d-flex justify-center flex-wrap mt-n5"
-      style="max-width: 800px"
-    >
-      <div class="flex-grow-1" style="max-width: 800px;">
-        <div v-if="home" class="text-left">
-          <h6 class="text-h6">Hot</h6>
-          <ArticleList sort="popular" period="month" :limit="3"></ArticleList>
-          <h6 class="text-h6">New</h6>
-          <ArticleList sort="new" period="all time" :limit="3"></ArticleList>
-          <!-- <Ad></Ad> -->
-        </div>
-        <div class="text-left" v-else>
-          <h6 class="text-h6">Search for "{{ currentSearch }}"</h6>
-          <ArticleList
-            :search="currentSearch"
-            :sort="sortSelect"
-            :period="periodSelect"
-            :limit="6"
-          ></ArticleList>
-        </div>
+    <v-container class="mt-n5" style="max-width: 1200px">
+      <div v-if="home" class="text-left">
+        <!-- <h6 class="text-center text-h4 font-weight-light">Hot</h6>
+        <ArticleList sort="popular" period="month" :limit="3"></ArticleList> -->
+        <ArticleList sort="new" period="all time" :limit="6"></ArticleList>
+        <!-- <Ad></Ad> -->
       </div>
-
+      <div class="text-left" v-else>
+        <h6 class="text-center text-h4 font-weight-light">
+          Search for "{{ currentSearch }}"
+        </h6>
+        <ArticleList
+          :search="currentSearch"
+          :sort="sortSelect"
+          :period="periodSelect"
+          :limit="12"
+        ></ArticleList>
+      </div>
       <!-- Tag List -->
-      <!-- <div elevation="1" class="px-5 text-left hidden-sm-and-down">
-        <h6 class="text-h6">Tags</h6>
-        <div v-for="tag in tags" :key="tag">
-          <v-chip
-            class="my-1"
-            outlined
-            @click="
-              home = false;
-              search = tag;
-              currentSearch = search;
-            "
-          >
+      <div class="my-5 d-flex flex-wrap justify-center align-center">
+        <router-link
+          v-for="tag in tags"
+          :key="tag"
+          :to="'/?search=' + tag"
+          class="text-decoration-none"
+        >
+          <v-chip class="my-1 mx-1" outlined>
             {{ tag }}
           </v-chip>
+        </router-link>
+      </div>
+
+      <div class="text-center my-5">
+        <div class="text-h5">Got something to report?</div>
+        <div>
+          Sign in with your google account and create an article!
         </div>
-      </div> -->
+      </div>
     </v-container>
   </div>
 </template>

@@ -3,54 +3,57 @@
     <v-app-bar
       color="blue darken-2"
       :dense="!$vuetify.breakpoint.mobile"
-      flat
+      elevation="2"
       dark
     >
+      <!-- Drawer button for mobile -->
       <v-app-bar-nav-icon
         class="hidden-md-and-up"
         @click.stop="drawer = !drawer"
         aria-label="navigate button"
       ></v-app-bar-nav-icon>
 
-      <router-link to="/" class="text-decoration-none">
-        <v-btn text tile class="hidden-sm-and-down">
-          <v-icon left>mdi-magnify</v-icon>
-          Search
-        </v-btn>
-      </router-link>
-
-      <router-link to="/tags" class="text-decoration-none">
-        <v-btn text tile class="hidden-sm-and-down">
-          <v-icon left>mdi-tag-multiple</v-icon>
-          Tags
-        </v-btn>
-      </router-link>
-
-      <router-link to="/create" class="text-decoration-none">
-        <v-btn text tile class="hidden-sm-and-down">
-          <v-icon left>mdi-pencil</v-icon>
-          Create
-        </v-btn>
-      </router-link>
-
-      <router-link to="/meta" class="text-decoration-none">
-        <v-btn text tile class="hidden-sm-and-down">
-          <v-icon left>mdi-information-variant</v-icon>
-          Meta
-        </v-btn>
-      </router-link>
+      <!-- Non-mobile buttons -->
+      <div class="hidden-sm-and-down">
+        <router-link to="/" class="text-decoration-none">
+          <v-btn text tile>
+            <v-icon left>mdi-magnify</v-icon>
+            Search
+          </v-btn>
+        </router-link>
+        <router-link to="/tags" class="text-decoration-none">
+          <v-btn text tile>
+            <v-icon left>mdi-tag-multiple</v-icon>
+            Tags
+          </v-btn>
+        </router-link>
+        <router-link to="/create" class="text-decoration-none">
+          <v-btn text tile class="hidden-sm-and-down">
+            <v-icon left>mdi-pencil</v-icon>
+            Create
+          </v-btn>
+        </router-link>
+        <router-link to="/meta" class="text-decoration-none">
+          <v-btn text tile class="hidden-sm-and-down">
+            <v-icon left>mdi-information-variant</v-icon>
+            Meta
+          </v-btn>
+        </router-link>
+      </div>
 
       <v-spacer></v-spacer>
 
+      <!-- Logo -->
       <div class="text-h5 d-flex align-center" id="bar-title">
         <img src="@/assets/head-logo-small.png" height="48px" alt="cr-logo" />
       </div>
 
       <v-spacer></v-spacer>
 
+      <!-- Right avatar -->
       <v-menu offset-y v-if="signedIn && !loading">
         <template v-slot:activator="{ on, attrs }">
-          <v-btn text v-bind="attrs" v-on="on" aria-label="profile button">
+          <v-btn text tile v-bind="attrs" v-on="on" aria-label="profile button">
             <v-avatar size="36" class="mx-2">
               <img :src="picture" alt="avatar" />
             </v-avatar>

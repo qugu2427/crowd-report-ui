@@ -1,27 +1,39 @@
 <template>
-  <div class="text-center">
-    <ArticlePreview
-      v-for="(article, index) in articles"
-      :key="`${index}-${article.id}-${Date.now()}-${Math.floor(Math.random())}`"
-      :id="article.id + ''"
-      :author="escapeAuthor(article.author)"
-      :title="article.title"
-      :tags="article.tags"
-      :views="article.views"
-      :hearts="article.hearts"
-      :imageUrl="article.imageUrl"
-      :created="dateAsString(article.created)"
-    ></ArticlePreview>
-    <v-btn color="blue darken-2" text v-if="more" @click="showMore(limit)">
-      <v-icon left>mdi-chevron-down</v-icon>
-      show more
-      <v-icon right>mdi-chevron-down</v-icon>
-    </v-btn>
-    <div class="font-italic" v-else-if="articles.length > 0">
-      end of results
+  <div>
+    <div class="d-flex flex-wrap justify-center align-center">
+      <ArticlePreview
+        v-for="(article, index) in articles"
+        :key="
+          `${index}-${article.id}-${Date.now()}-${Math.floor(Math.random())}`
+        "
+        :id="article.id + ''"
+        :author="escapeAuthor(article.author)"
+        :title="article.title"
+        :tags="article.tags"
+        :views="article.views"
+        :hearts="article.hearts"
+        :imageUrl="article.imageUrl"
+        :created="dateAsString(article.created)"
+      ></ArticlePreview>
     </div>
-    <div class="font-italic" v-else-if="!loading && articles.length == 0">
-      no results
+    <div class="text-center">
+      <v-btn
+        text
+        block
+        tile
+        color="blue darken-2"
+        v-if="more"
+        @click="showMore(limit)"
+      >
+        <v-icon left>mdi-plus</v-icon>
+        show more
+      </v-btn>
+      <div class="font-italic" v-else-if="articles.length > 0">
+        end of results
+      </div>
+      <div class="font-italic" v-else-if="!loading && articles.length == 0">
+        no results
+      </div>
     </div>
   </div>
 </template>
