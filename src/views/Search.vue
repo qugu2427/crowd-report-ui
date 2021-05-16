@@ -1,7 +1,7 @@
 <template>
   <div class="search">
     <!-- Search Bar -->
-    <v-container style="max-width: 800px;">
+    <v-container style="max-width: 900px;">
       <div class="d-flex">
         <v-select
           filled
@@ -50,16 +50,15 @@
     </v-container>
     <!-- Article list -->
     <v-container class="mt-n5" style="max-width: 1200px">
-      <div v-if="home" class="text-left">
+      <div v-if="home">
         <!-- <h6 class="text-center text-h4 font-weight-light">Hot</h6>
         <ArticleList sort="popular" period="month" :limit="3"></ArticleList> -->
         <ArticleList sort="new" period="all time" :limit="6"></ArticleList>
-        <!-- <Ad></Ad> -->
       </div>
-      <div class="text-left" v-else>
-        <h6 class="text-center text-h4 font-weight-light">
+      <div v-else>
+        <div class="text-center text-h4 font-weight-light">
           Search for "{{ currentSearch }}"
-        </h6>
+        </div>
         <ArticleList
           :search="currentSearch"
           :sort="sortSelect"
@@ -83,9 +82,8 @@
 
       <div class="text-center my-5">
         <div class="text-h5">Got something to report?</div>
-        <div>
-          Sign in with your google account and create an article!
-        </div>
+        Sign in with your google account and
+        <router-link to="/create">create</router-link> an article!
       </div>
     </v-container>
   </div>
@@ -94,12 +92,10 @@
 <script>
 import { fetchTags } from "@/requester.js";
 import ArticleList from "@/components/ArticleList.vue";
-// import Ad from "@/components/Ad.vue";
 export default {
   name: "Search",
   components: {
     ArticleList,
-    // Ad,
   },
   data() {
     return {

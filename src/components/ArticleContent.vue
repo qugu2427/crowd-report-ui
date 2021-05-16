@@ -49,19 +49,6 @@ export default {
 
 <style lang="css" scoped>
 @import "~vue2-editor/dist/vue2-editor.css";
-/* .articleBody {
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-
-  -ms-word-break: break-all;
-  word-break: break-all;
-  word-break: break-word;
-
-  -ms-hyphens: auto;
-  -moz-hyphens: auto;
-  -webkit-hyphens: auto;
-  hyphens: auto;
-} */
 .articleBody img {
   max-width: 100%;
 }

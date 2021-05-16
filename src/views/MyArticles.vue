@@ -1,38 +1,36 @@
 <template>
-  <div class="my-articles">
-    <v-container style="max-width: 800px;">
-      <!-- Sort an period selectors -->
-      <div class="d-flex">
-        <v-select
-          filled
-          rounded
-          label="sort"
-          append-icon="mdi-sort"
-          :items="sort"
-          v-model="sortSelect"
-          class="mr-2"
-        ></v-select>
-        <v-select
-          filled
-          rounded
-          label="period"
-          :items="period"
-          v-model="periodSelect"
-          append-icon="mdi-clock"
-        ></v-select>
-      </div>
-      <!-- Article list container -->
-      <div class="flex-grow-1" style="max-width: 600px;">
-        <h6 class="text-h6">Your articles</h6>
-        <MyArticleList
-          :accessToken="accessToken"
-          :sort="sortSelect"
-          :period="periodSelect"
-          :limit="6"
-        ></MyArticleList>
-      </div>
-    </v-container>
-  </div>
+  <v-container style="max-width: 800px;">
+    <!-- Sort an period selectors -->
+    <div class="d-flex">
+      <v-select
+        filled
+        rounded
+        label="sort"
+        append-icon="mdi-sort"
+        :items="sort"
+        v-model="sortSelect"
+        class="mr-2"
+      ></v-select>
+      <v-select
+        filled
+        rounded
+        label="period"
+        :items="period"
+        v-model="periodSelect"
+        append-icon="mdi-clock"
+      ></v-select>
+    </div>
+    <!-- Article list -->
+    <div class="text-center text-h4 font-weight-light">
+      Your articles
+    </div>
+    <MyArticleList
+      :accessToken="accessToken"
+      :sort="sortSelect"
+      :period="periodSelect"
+      :limit="6"
+    ></MyArticleList>
+  </v-container>
 </template>
 
 <script>
