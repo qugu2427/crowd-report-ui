@@ -1,5 +1,5 @@
 <template>
-  <div class="text-center">
+  <div>
     <ArticlePreview
       v-for="(article, index) in articles"
       :key="`${index}-${article.id}-${Date.now()}-${Math.floor(Math.random())}`"
@@ -12,10 +12,15 @@
       :imageUrl="article.imageUrl"
       :created="dateAsString(article.created)"
     ></ArticlePreview>
-    <v-btn color="blue darken-2" text v-if="more" @click="showMore(limit)">
-      <v-icon left>mdi-chevron-down</v-icon>
+    <v-btn
+      color="blue darken-2"
+      block
+      text
+      v-if="more"
+      @click="showMore(limit)"
+    >
+      <v-icon left>mdi-plus</v-icon>
       show more
-      <v-icon right>mdi-chevron-down</v-icon>
     </v-btn>
     <div class="font-italic" v-else-if="articles.length > 0">
       end of results

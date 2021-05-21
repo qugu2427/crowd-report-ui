@@ -74,7 +74,15 @@
           :to="'/?search=' + tag"
           class="text-decoration-none"
         >
-          <v-chip class="my-1 mx-1" outlined>
+          <v-chip
+            @click="
+              search = tag;
+              currentSearch = tag;
+              home = false;
+            "
+            class="my-1 mx-1"
+            outlined
+          >
             {{ tag }}
           </v-chip>
         </router-link>
@@ -104,9 +112,9 @@ export default {
       tags: [],
       home: true,
       sort: ["popular", "new", "hearted", "viewed"],
-      sortSelect: "popular",
+      sortSelect: "new",
       period: ["day", "week", "month", "year", "all time"],
-      periodSelect: "week",
+      periodSelect: "month",
     };
   },
   async mounted() {
