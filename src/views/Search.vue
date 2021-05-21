@@ -1,7 +1,7 @@
 <template>
   <div class="search">
     <!-- Search Bar -->
-    <v-container style="max-width: 900px;">
+    <v-container style="max-width: 800px;">
       <div class="d-flex">
         <v-select
           filled

@@ -1,17 +1,19 @@
 <template>
   <div>
-    <v-app-bar
-      color="blue darken-2"
-      :dense="!$vuetify.breakpoint.mobile"
-      elevation="2"
-      dark
-    >
+    <v-app-bar color="blue darken-2" elevation="2" dark>
       <!-- Drawer button for mobile -->
       <v-app-bar-nav-icon
         class="hidden-md-and-up"
         @click.stop="drawer = !drawer"
         aria-label="navigate button"
       ></v-app-bar-nav-icon>
+
+      <!-- Logo -->
+      <div class="text-h5 d-flex align-center" id="bar-title">
+        <img src="@/assets/logo.png" height="48px" alt="cr-logo" />
+      </div>
+
+      <v-spacer></v-spacer>
 
       <!-- Non-mobile buttons -->
       <div class="hidden-sm-and-down">
@@ -39,13 +41,6 @@
             Meta
           </v-btn>
         </router-link>
-      </div>
-
-      <v-spacer></v-spacer>
-
-      <!-- Logo -->
-      <div class="text-h5 d-flex align-center" id="bar-title">
-        <img src="@/assets/head-logo-small.png" height="48px" alt="cr-logo" />
       </div>
 
       <v-spacer></v-spacer>
@@ -130,7 +125,6 @@
 <script>
 import { escapeAuthor } from "@/helpers.js";
 export default {
-  name: "TopBar",
   props: {
     signedIn: { type: Boolean, default: false },
     name: { type: String, default: "" },
@@ -156,10 +150,4 @@ export default {
 };
 </script>
 
-<style scoped>
-@import url(https://fonts.googleapis.com/css?family=Roboto);
-#bar-title {
-  font-family: "Roboto" !important;
-  font-weight: bolder;
-}
-</style>
+<style></style>
