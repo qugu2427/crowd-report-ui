@@ -48,7 +48,7 @@ export default {
       sort: ["popular", "new", "hearted", "viewed"],
       sortSelect: "popular",
       period: ["day", "week", "month", "year", "all time"],
-      periodSelect: "day",
+      periodSelect: "all time",
     };
   },
   mounted() {

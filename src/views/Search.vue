@@ -1,5 +1,5 @@
 <template>
-  <div class="search">
+  <div>
     <!-- Search Bar -->
     <v-container style="max-width: 800px;">
       <div class="d-flex">

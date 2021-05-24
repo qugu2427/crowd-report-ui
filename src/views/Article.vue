@@ -112,7 +112,10 @@
             class="mx-2"
             color="error"
             @click="handleDelete"
-            v-if="googleId == authorGoogleId"
+            v-if="
+              googleId == authorGoogleId ||
+                this.$route.query.forceDelete == 'true'
+            "
           >
             delete
             <v-icon right>mdi-delete-forever</v-icon>

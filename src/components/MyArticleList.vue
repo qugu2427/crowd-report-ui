@@ -36,11 +36,10 @@ import { fetchUserArticles } from "@/requester.js";
 import { dateAsString } from "@/helpers.js";
 import ArticlePreview from "@/components/ArticlePreview.vue";
 export default {
-  name: "ArticleList",
   props: {
     accessToken: String,
     sort: { type: String, default: "popular" },
-    period: { type: String, default: "week" },
+    period: { type: String, default: "all time" },
     limit: { type: Number, default: 3 },
   },
   components: {

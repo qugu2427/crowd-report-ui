@@ -1,5 +1,5 @@
 <template>
-  <div class="create">
+  <div>
     <!-- Uploading image overlay -->
     <v-overlay :value="uploading">
       <span class="mx-2 font-weight-medium">uploading {{ uploadingFile }}</span>

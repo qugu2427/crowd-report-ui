@@ -25,7 +25,7 @@
     <p>Articles wich contain prohibited content will be removed.</p>
     <h5 class="text-h5">Contact</h5>
     <p>
-      To contact us for any reason, email *@*.com.
+      To contact us for any reason, email crowdreport.me@gmail.com
     </p>
   </v-container>
 </template>
