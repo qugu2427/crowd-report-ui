@@ -98,11 +98,6 @@
                 <v-icon right>mdi-account-search</v-icon>
               </v-btn>
             </router-link>
-            <!-- Report button (disabled until feature is added) -->
-            <!-- <v-btn small outlined class="mx-2">
-            report article
-            <v-icon right>mdi-alert-octagram</v-icon>
-          </v-btn> -->
           </div>
 
           <!-- Delete buton -->
@@ -112,10 +107,7 @@
             class="mx-2"
             color="error"
             @click="handleDelete"
-            v-if="
-              googleId == authorGoogleId ||
-                this.$route.query.forceDelete == 'true'
-            "
+            v-if="googleId == authorGoogleId || (forceShowDelete && signedIn)"
           >
             delete
             <v-icon right>mdi-delete-forever</v-icon>
@@ -152,6 +144,7 @@ export default {
       hearts: 0,
       hearted: false,
       hearting: true,
+      forceShowDelete: false,
     };
   },
   methods: {
@@ -214,6 +207,17 @@ export default {
       this.hearting = false;
     }
     this.loading = false;
+  },
+  created() {
+    let count = 0;
+    window.addEventListener("keydown", (e) => {
+      if (e.key == "+") {
+        count++;
+        if (count > 6) {
+          this.forceShowDelete = true;
+        }
+      }
+    });
   },
 };
 </script>
