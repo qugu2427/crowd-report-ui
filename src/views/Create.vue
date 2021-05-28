@@ -46,9 +46,9 @@
         <div v-else>
           <!-- Update Mode -->
           <v-alert
-            type="info"
             color="blue-grey"
             icon="mdi-lead-pencil"
+            dark
             tile
             prominent
             v-if="updateMode"
@@ -169,7 +169,7 @@
           </span>
         </div>
       </div>
-      <v-alert type="info" color="blue-grey" tile prominent v-else>
+      <v-alert color="blue-grey" icons="mdi-school" dark tile prominent v-else>
         <strong>
           You must sign in to create an article.
         </strong>
