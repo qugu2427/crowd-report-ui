@@ -219,7 +219,6 @@ export default {
       publishing: false,
       uploading: false,
       uploadingFile: "",
-      updateMode: true,
       updateArticleId: -1,
     };
   },
@@ -272,6 +271,9 @@ export default {
         (this.body.length / 10000) *
         100
       ).toFixed(1)}%)`;
+    },
+    updateMode: function() {
+      return this.updateArticleId > 0;
     },
   },
   methods: {
@@ -336,7 +338,6 @@ export default {
     if (typeof this.$route.query.updateArticleId != "undefined") {
       if (Number(this.$route.query.updateArticleId) > 0) {
         this.updateArticleId = this.$route.query.updateArticleId;
-        this.updateMode = true;
       } else {
         this.$emit("errored", {
           name: "Invalid Update ID",
