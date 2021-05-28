@@ -139,8 +139,8 @@
               color="grey lighten-3"
               class="mr-2"
               @click="preview = true"
-              >preview</v-btn
-            >
+              >preview
+            </v-btn>
             <v-btn
               depressed
               dark
@@ -148,14 +148,19 @@
               @click="publish"
               id="publish_btn"
               :disabled="!articleValid"
-              >publish</v-btn
-            >
+              >publish
+            </v-btn>
           </div>
+          <span class="text-caption">
+            *Your name will be publicly assosiated with this article.
+          </span>
         </div>
       </div>
-      <v-alert type="info" tile prominent v-else
-        ><strong>You must sign in to create an article.</strong></v-alert
-      >
+      <v-alert type="info" tile prominent v-else>
+        <strong>
+          You must sign in to create an article.
+        </strong>
+      </v-alert>
     </v-container>
   </div>
 </template>

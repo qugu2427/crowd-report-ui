@@ -1,13 +1,18 @@
 <template>
   <v-container style="max-width: 500px">
-    <h5 class="text-h5">Index</h5>
-    <ul>
-      <li>Disclaimer</li>
-      <li>Prohibited Content</li>
-      <li>FAQ</li>
-    </ul>
-    <br />
-    <h5 class="text-h5">Disclaimer</h5>
+    <h5 class="text-h5">Privacy Policy</h5>
+    <p>
+      Crowd Report("we", "us", "our") is commited to only storing information
+      wich is essential for our services. By signing in with your Google account
+      you are providing us with Google profile information and your Google
+      email. Information from your google profile will only be stored in our
+      database when you create or heart an article. When you publish an article
+      your full name (as provided by google) will be publicly associated with
+      that article, but don't worry, an article can be deleted at anytime. We
+      don't use Cookies or Trackers, but Google might. See their privacy policy
+      if you want to know more.
+    </p>
+    <h5 class="text-h5">Content Disclaimer</h5>
     <p>
       Crowd Report is an open source platform for users to share information in
       the form of articles. Crowd Report does not endorse any of the content
