@@ -44,6 +44,18 @@
         </div>
         <!-- Create form -->
         <div v-else>
+          <!-- Update Mode -->
+          <v-alert
+            type="info"
+            icon="mdi-lead-pencil"
+            tile
+            prominent
+            v-if="updateMode"
+          >
+            <strong>
+              You are currently in update mode.
+            </strong>
+          </v-alert>
           <!-- Title input -->
           <v-text-field
             label="title"
@@ -148,7 +160,7 @@
               @click="publish"
               id="publish_btn"
               :disabled="!articleValid"
-              >publish
+              >{{ this.updateMode ? "Update & Publish" : "Publish" }}
             </v-btn>
           </div>
           <span class="text-caption">
@@ -204,7 +216,7 @@ export default {
       publishing: false,
       uploading: false,
       uploadingFile: "",
-      editID: null,
+      updateMode: false,
     };
   },
   computed: {
@@ -269,7 +281,8 @@ export default {
           this.title,
           this.body,
           this.tags,
-          this.captchaResponse
+          this.captchaResponse,
+          this.replaceId
         );
         if (res.err != null) {
           alert(res.err.name + "\n" + res.err.message);
@@ -313,6 +326,14 @@ export default {
       this.$emit("errored", { name: res.err.name, message: res.err.message });
     } else {
       this.optionTags = res.data.tags;
+    }
+
+    // Replace article
+    try {
+      parseInt(this.$route.query.updateArticleId);
+      this.updateMode = true;
+    } catch (e) {
+      alert("Not a valid article id");
     }
   },
 };

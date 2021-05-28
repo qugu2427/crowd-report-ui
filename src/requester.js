@@ -87,7 +87,8 @@ let createArticle = async function(
   title,
   body,
   tags,
-  captcha
+  captcha,
+  replaceId = -1,
 ) {
   let data = new URLSearchParams();
   data.append("imageUrl", imageUrl);
@@ -95,6 +96,7 @@ let createArticle = async function(
   data.append("body", body);
   data.append("tags", tags.join(","));
   data.append("captcha", captcha);
+  data.append("replaceId", replaceId)
   let res = await fetchAsJSON(
     `${apiUrl}/create`,
     {
