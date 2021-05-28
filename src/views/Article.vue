@@ -112,6 +112,18 @@
             delete
             <v-icon right>mdi-delete-forever</v-icon>
           </v-btn>
+          <router-link :to="'/create?updateId=' + this.$route.params.id">
+            <v-btn
+              small
+              outlined
+              class="mx-2"
+              color="error"
+              v-if="googleId == authorGoogleId || (forceShowDelete && signedIn)"
+            >
+              edit
+              <v-icon right>mdi-lead-pencil</v-icon>
+            </v-btn>
+          </router-link>
         </div>
       </div>
     </div>

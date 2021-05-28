@@ -183,7 +183,6 @@ import ArticleContent from "@/components/ArticleContent.vue";
 import { VueEditor } from "vue2-editor";
 import VueRecaptcha from "vue-recaptcha";
 export default {
-  name: "Create",
   props: {
     signedIn: { type: Boolean, default: false },
     accessToken: { type: String, default: "" },
