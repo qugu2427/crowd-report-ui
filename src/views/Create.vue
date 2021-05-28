@@ -47,6 +47,7 @@
           <!-- Update Mode -->
           <v-alert
             type="info"
+            color="blue-grey"
             icon="mdi-lead-pencil"
             tile
             prominent
@@ -168,7 +169,7 @@
           </span>
         </div>
       </div>
-      <v-alert type="info" tile prominent v-else>
+      <v-alert type="info" color="blue-grey" tile prominent v-else>
         <strong>
           You must sign in to create an article.
         </strong>
@@ -216,6 +217,7 @@ export default {
       uploading: false,
       uploadingFile: "",
       updateMode: false,
+      updateArticleId: -1,
     };
   },
   computed: {
@@ -329,9 +331,10 @@ export default {
 
     // Replace article
     try {
-      parseInt(this.$route.query.updateArticleId);
+      updateArticleId = parseInt(this.$route.query.updateArticleId);
       this.updateMode = true;
-    } catch (e) {
+      console.log("hello");
+    } catch (err) {
       alert("Not a valid article id");
     }
   },
