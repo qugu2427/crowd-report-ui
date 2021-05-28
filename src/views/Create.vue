@@ -219,7 +219,7 @@ export default {
       publishing: false,
       uploading: false,
       uploadingFile: "",
-      updateMode: false,
+      updateMode: true,
       updateArticleId: -1,
     };
   },
