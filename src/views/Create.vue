@@ -331,7 +331,7 @@ export default {
 
     // Replace article
     try {
-      updateArticleId = parseInt(this.$route.query.updateArticleId);
+      this.updateArticleId = parseInt(this.$route.query.updateArticleId);
       this.updateMode = true;
       console.log("hello");
     } catch (err) {
