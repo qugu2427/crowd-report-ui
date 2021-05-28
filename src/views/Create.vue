@@ -336,6 +336,7 @@ export default {
     if (typeof this.$route.query.updateArticleId != "undefined") {
       if (Number(this.$route.query.updateArticleId) > 0) {
         this.updateArticleId = this.$route.query.updateArticleId;
+        alert(this.updateArticleId);
         this.updateMode = true;
       } else {
         this.$emit("errored", {
