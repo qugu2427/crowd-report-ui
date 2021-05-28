@@ -53,7 +53,7 @@
             prominent
             v-if="updateMode"
           >
-            <strong> You are currently in update mode. </strong>
+            You are currently in update mode.
           </v-alert>
           <!-- Title input -->
           <v-text-field
@@ -159,7 +159,7 @@
               @click="publish"
               id="publish_btn"
               :disabled="!articleValid"
-              >{{ this.updateMode ? "Update & Publish" : "Publish" }}
+              >{{ updateMode ? "Update & Publish" : "Publish" }}
             </v-btn>
           </div>
           <span class="text-caption">
@@ -220,6 +220,7 @@ export default {
       uploading: false,
       uploadingFile: "",
       updateArticleId: -1,
+      updateMode: false,
     };
   },
   computed: {
@@ -271,9 +272,6 @@ export default {
         (this.body.length / 10000) *
         100
       ).toFixed(1)}%)`;
-    },
-    updateMode: function() {
-      return this.updateArticleId > 0;
     },
   },
   methods: {
@@ -338,6 +336,7 @@ export default {
     if (typeof this.$route.query.updateArticleId != "undefined") {
       if (Number(this.$route.query.updateArticleId) > 0) {
         this.updateArticleId = this.$route.query.updateArticleId;
+        this.updateMode = true;
       } else {
         this.$emit("errored", {
           name: "Invalid Update ID",
