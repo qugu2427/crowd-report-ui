@@ -46,16 +46,14 @@
         <div v-else>
           <!-- Update Mode -->
           <v-alert
-            color="blue-grey"
+            color="blue darken-2"
             icon="mdi-lead-pencil"
-            dark
+            outlined
             tile
             prominent
             v-if="updateMode"
           >
-            <strong>
-              You are currently in update mode.
-            </strong>
+            <strong> You are currently in update mode. </strong>
           </v-alert>
           <!-- Title input -->
           <v-text-field
@@ -169,10 +167,15 @@
           </span>
         </div>
       </div>
-      <v-alert color="blue-grey" icons="mdi-school" dark tile prominent v-else>
-        <strong>
-          You must sign in to create an article.
-        </strong>
+      <v-alert
+        color="blue darken-2"
+        icon="mdi-information-outline"
+        outlined
+        tile
+        prominent
+        v-else
+      >
+        You must sign in to create an article.
       </v-alert>
     </v-container>
   </div>
@@ -330,12 +333,16 @@ export default {
     }
 
     // Replace article
-    try {
-      this.updateArticleId = parseInt(this.$route.query.updateArticleId);
-      this.updateMode = true;
-      console.log("hello");
-    } catch (err) {
-      alert("Not a valid article id");
+    if (typeof this.$route.query.updateArticleId != "undefined") {
+      if (Number(this.$route.query.updateArticleId) > 0) {
+        this.updateArticleId = this.$route.query.updateArticleId;
+      } else {
+        this.$emit("errored", {
+          name: "Invalid Update ID",
+          message:
+            "The ID of the article to be updated is not a number above 0.",
+        });
+      }
     }
   },
 };
