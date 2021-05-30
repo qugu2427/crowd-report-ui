@@ -237,7 +237,6 @@ export default {
       publishing: false,
       uploading: false,
       uploadingFile: "",
-      updateArticleId: -1,
       updateMode: false,
     };
   },
@@ -353,9 +352,8 @@ export default {
     // Replace article
     if (typeof this.$route.query.updateArticleId != "undefined") {
       if (Number(this.$route.query.updateArticleId) > 0) {
-        this.updateArticleId = this.$route.query.updateArticleId;
         this.updateMode = true;
-        res = await fetchArticle(this.updateArticleId);
+        res = await fetchArticle(this.$route.query.updateArticleId);
         if (res.err != null) {
           this.$emit("errored", {
             name: res.err.name,
