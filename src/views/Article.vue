@@ -112,7 +112,7 @@
             delete
             <v-icon right>mdi-delete-forever</v-icon>
           </v-btn>
-          <router-link :to="'/create?updateId=' + this.$route.params.id">
+          <router-link :to="'/create?updateArticleId=' + this.$route.params.id">
             <v-btn
               small
               outlined
