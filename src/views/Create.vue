@@ -195,7 +195,12 @@
 </template>
 
 <script>
-import { fetchTags, createArticle, uploadImage } from "@/requester.js";
+import {
+  fetchTags,
+  fetchArticle,
+  createArticle,
+  uploadImage,
+} from "@/requester.js";
 import ArticleContent from "@/components/ArticleContent.vue";
 import { VueEditor } from "vue2-editor";
 import VueRecaptcha from "vue-recaptcha";
@@ -349,8 +354,17 @@ export default {
     if (typeof this.$route.query.updateArticleId != "undefined") {
       if (Number(this.$route.query.updateArticleId) > 0) {
         this.updateArticleId = this.$route.query.updateArticleId;
-        alert(this.updateArticleId);
         this.updateMode = true;
+        res = await fetchArticle(this.updateArticleId);
+        if (res.err != null) {
+          this.$emit("errored", {
+            name: res.err.name,
+            message: res.err.message,
+          });
+        } else {
+          this.title = response.data.title;
+          this.body = response.data.body;
+        }
       } else {
         this.$emit("errored", {
           name: "Invalid Update ID",
