@@ -362,8 +362,8 @@ export default {
             message: res.err.message,
           });
         } else {
-          this.title = response.data.title;
-          this.body = response.data.body;
+          this.title = res.data.title;
+          this.body = res.data.body;
         }
       } else {
         this.$emit("errored", {
