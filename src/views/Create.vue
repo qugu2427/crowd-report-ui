@@ -53,7 +53,14 @@
             prominent
             v-if="updateMode"
           >
-            You are currently in update mode.
+            <v-row align="center">
+              <v-col class="grow">
+                You are in update mode.
+              </v-col>
+              <v-col class="shrink">
+                <v-btn @click="updateMode = false">Exit</v-btn>
+              </v-col>
+            </v-row>
           </v-alert>
           <!-- Title input -->
           <v-text-field
