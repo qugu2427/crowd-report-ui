@@ -58,7 +58,13 @@
                 You are in update mode.
               </v-col>
               <v-col class="shrink">
-                <v-btn @click="updateMode = false">Exit</v-btn>
+                <v-btn
+                  depressed
+                  dark
+                  color="blue darken-2"
+                  @click="updateMode = false"
+                  >Exit</v-btn
+                >
               </v-col>
             </v-row>
           </v-alert>
