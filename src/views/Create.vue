@@ -364,6 +364,7 @@ export default {
         } else {
           this.title = res.data.title;
           this.body = res.data.body;
+          this.tags = res.data.tags;
         }
       } else {
         this.$emit("errored", {
