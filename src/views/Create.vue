@@ -362,8 +362,8 @@ export default {
           this.updateId = -1;
         } else {
           this.title = res.data.title;
-          let img = new Image();
-          img.src = res.data.imageUrl;
+          this.prevImage = new Image();
+          this.prevImage.src = res.data.imageUrl;
           this.body = res.data.body;
           this.tags = res.data.tags;
         }
