@@ -51,7 +51,7 @@
             outlined
             tile
             prominent
-            v-if="updateMode"
+            v-if="updateId > 0"
           >
             <v-row align="center">
               <v-col class="grow">
@@ -62,7 +62,7 @@
                   depressed
                   dark
                   color="blue darken-2"
-                  @click="updateMode = false"
+                  @click="updateId = -1"
                   >Exit</v-btn
                 >
               </v-col>
@@ -172,7 +172,7 @@
               @click="publish"
               id="publish_btn"
               :disabled="!articleValid"
-              >{{ updateMode ? "Update & Publish" : "Publish" }}
+              >{{ updateId > 0 ? "Update" : "Publish" }}
             </v-btn>
           </div>
           <span class="text-caption">
@@ -237,7 +237,7 @@ export default {
       publishing: false,
       uploading: false,
       uploadingFile: "",
-      updateMode: false,
+      updateId: -1,
     };
   },
   computed: {
@@ -303,7 +303,7 @@ export default {
           this.body,
           this.tags,
           this.captchaResponse,
-          this.replaceId
+          this.updateId
         );
         if (res.err != null) {
           alert(res.err.name + "\n" + res.err.message);
@@ -352,15 +352,18 @@ export default {
     // Replace article
     if (typeof this.$route.query.updateArticleId != "undefined") {
       if (Number(this.$route.query.updateArticleId) > 0) {
-        this.updateMode = true;
-        res = await fetchArticle(this.$route.query.updateArticleId);
+        this.updateId = Number(this.$route.query.updateArticleId);
+        res = await fetchArticle(this.updateId);
         if (res.err != null) {
           this.$emit("errored", {
             name: res.err.name,
             message: res.err.message,
           });
+          this.updateId = -1;
         } else {
           this.title = res.data.title;
+          let img = new Image();
+          img.src = res.data.imageUrl;
           this.body = res.data.body;
           this.tags = res.data.tags;
         }
