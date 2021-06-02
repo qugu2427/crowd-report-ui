@@ -4,19 +4,18 @@
     <p>
       Crowd Report("we", "us", "our") is commited to only storing information
       wich is essential for our services. By signing in with your Google account
-      you are providing us with Google profile information and your Google
-      email. Information from your google profile will only be stored in our
+      you are providing us with Google profile information including email, full name, and more.
+      Information from your google profile will only be stored in our
       database when you create or heart an article. When you publish an article
-      your full name (as provided by google) will be publicly associated with
-      that article, but don't worry, an article can be deleted at anytime. We
-      don't use Cookies or Trackers, but Google might. See their privacy policy
-      if you want to know more.
+      your full name, as provided by google, will be publicly associated with
+      that article. An article can be deleted at anytime. We may use cookies to improve your experience.
+      We do not use cookies as a means of harvesting or selling data. 
+      Be aware that Google's privacy policy is different froms ours and may apply where Google functionality is used (i.e captcha and login).
     </p>
-    <h5 class="text-h5">Content Disclaimer</h5>
+    <h5 class="text-h5">Disclaimer</h5>
     <p>
-      Crowd Report is an open source platform for users to share information in
-      the form of articles. Crowd Report does not endorse any of the content
-      published by users. Crowd Report does not review content prior to
+      Crowd Report does not endorse any of the articles
+      published by users. Crowd Report does not review articles prior to
       publishing.
     </p>
     <h5 class="text-h5">Prohibited Content</h5>
@@ -24,7 +23,8 @@
       <li>Low Quality/Spam</li>
       <li>Illegal Material</li>
       <li>False and/or Uncited Data</li>
-      <li>Copyrighted Material</li>
+      <li>Material wich infringes on intellectual property rights</li>
+      <li>Harassment of a group or individual</li>
     </ul>
 
     <p>Articles wich contain prohibited content will be removed.</p>
@@ -37,7 +37,6 @@
 
 <script>
 export default {
-  name: "Meta",
 };
 </script>
 

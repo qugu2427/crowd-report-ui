@@ -8,7 +8,6 @@ import Tags from '@/views/Tags.vue'
 import Meta from '@/views/Meta.vue'
 import NotFound from '@/views/NotFound.vue'
 import Create from '@/views/Create.vue'
-import Disclaimer from '@/views/Disclaimer.vue'
 import MyArticles from '@/views/MyArticles.vue'
 
 Vue.use(VueRouter)
@@ -48,11 +47,6 @@ const routes = [
     path: '/create',
     name: 'Create',
     component: Create
-  },
-  {
-    path: '/disclaimer',
-    name: 'Disclaimer',
-    component: Disclaimer
   },
   {
     path: '/myArticles',

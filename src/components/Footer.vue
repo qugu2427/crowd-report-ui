@@ -9,9 +9,9 @@
         >
       </a>
       <!-- Disclaimer button -->
-      <router-link to="/disclaimer">
+      <router-link to="/meta">
         <v-btn text rounded color="white" class="my-2"
-          >Disclaimer<v-icon right>mdi-exclamation-thick</v-icon></v-btn
+          >Privacy<v-icon right>mdi-lock</v-icon></v-btn
         >
       </router-link>
       <!-- Contact Button -->
