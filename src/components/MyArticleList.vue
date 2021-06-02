@@ -1,4 +1,5 @@
 <template>
+<div>
   <div class="d-flex flex-wrap justify-center align-center">
     <ArticlePreview
       v-for="(article, index) in articles"
@@ -12,6 +13,8 @@
       :imageUrl="article.imageUrl"
       :created="dateAsString(article.created)"
     ></ArticlePreview>
+  </div>
+  <div class="text-center">
     <v-btn
       color="blue darken-2"
       block
@@ -29,6 +32,7 @@
       no results
     </div>
   </div>
+</div>
 </template>
 
 <script>
