@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="d-flex flex-wrap justify-center align-center">
     <ArticlePreview
       v-for="(article, index) in articles"
       :key="`${index}-${article.id}-${Date.now()}-${Math.floor(Math.random())}`"
