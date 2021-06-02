@@ -104,6 +104,7 @@
           <v-btn
             small
             dark
+            depressed
             class="mx-2 rounded-0"
             color="error"
             @click="handleDelete"
@@ -119,6 +120,7 @@
             <v-btn
               small
               dark
+              depressed
               class="mx-2 rounded-0"
               color="error"
               v-if="googleId == authorGoogleId || (forceShowDelete && signedIn)"
