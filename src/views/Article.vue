@@ -66,7 +66,7 @@
             <v-btn
               small
               outlined
-              class="mx-2"
+              class="mx-2 rounded-0"
               color="pink"
               @click="handleHeart()"
               :disabled="this.hearting"
@@ -79,7 +79,7 @@
               small
               dark
               depressed
-              class="mx-2"
+              class="mx-2 rounded-0"
               color="pink"
               @click="handleHeart()"
               :disabled="this.hearting"
@@ -93,7 +93,7 @@
               :to="'/?search=' + author"
               style="text-decoration: none;"
             >
-              <v-btn small outlined class="mx-2">
+              <v-btn small outlined class="mx-2 rounded-0">
                 {{ author }}
                 <v-icon right>mdi-account-search</v-icon>
               </v-btn>
@@ -103,8 +103,8 @@
           <!-- Delete buton -->
           <v-btn
             small
-            outlined
-            class="mx-2"
+            dark
+            class="mx-2 rounded-0"
             color="error"
             @click="handleDelete"
             v-if="googleId == authorGoogleId || (forceShowDelete && signedIn)"
@@ -118,8 +118,8 @@
           >
             <v-btn
               small
-              outlined
-              class="mx-2"
+              dark
+              class="mx-2 rounded-0"
               color="error"
               v-if="googleId == authorGoogleId || (forceShowDelete && signedIn)"
             >
