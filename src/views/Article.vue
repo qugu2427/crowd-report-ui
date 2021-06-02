@@ -101,34 +101,36 @@
           </div>
 
           <!-- Delete buton -->
-          <v-btn
-            small
-            dark
-            depressed
-            class="mx-2 rounded-0"
-            color="error"
-            @click="handleDelete"
-            v-if="googleId == authorGoogleId || (forceShowDelete && signedIn)"
-          >
-            delete
-            <v-icon right>mdi-delete-forever</v-icon>
-          </v-btn>
-          <router-link
-            :to="'/create?updateArticleId=' + this.$route.params.id"
-            class="text-decoration-none"
-          >
+          <div class="my-4">
             <v-btn
               small
               dark
               depressed
               class="mx-2 rounded-0"
               color="error"
+              @click="handleDelete"
               v-if="googleId == authorGoogleId || (forceShowDelete && signedIn)"
             >
-              edit
-              <v-icon right>mdi-lead-pencil</v-icon>
+              delete
+              <v-icon right>mdi-delete-forever</v-icon>
             </v-btn>
-          </router-link>
+            <router-link
+              :to="'/create?updateArticleId=' + this.$route.params.id"
+              class="text-decoration-none"
+            >
+              <v-btn
+                small
+                dark
+                depressed
+                class="mx-2 rounded-0"
+                color="error"
+                v-if="googleId == authorGoogleId || (forceShowDelete && signedIn)"
+              >
+                edit
+                <v-icon right>mdi-lead-pencil</v-icon>
+              </v-btn>
+            </router-link>
+          </div>
         </div>
       </div>
     </div>
