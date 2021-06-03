@@ -340,6 +340,17 @@ export default {
     expireHandler: function() {
       this.captchaResponse = "";
     },
+    srcToFile: function(src) {
+      let byteString = atob(src.split(",")[1]);
+      let ab = new ArrayBuffer(byteString.length);
+      let ia = new Uint8Array(ab);
+      for (let i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+      }
+      let blob = new Blob([ia], { type: "image/jpeg" });
+      let file = new File([blob], "image.jpg");
+      return file;
+    },
   },
   async mounted() {
     // Load tags
@@ -363,7 +374,7 @@ export default {
           this.updateId = -1;
         } else {
           this.title = res.data.title;
-          this.prevImage = new Image();
+          this.prevImage = srcToFile(res.data.imageUrl);
           this.prevImage.src = res.data.imageUrl;
           this.body = res.data.body;
           this.tags = res.data.tags;
