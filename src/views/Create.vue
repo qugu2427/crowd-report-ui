@@ -201,6 +201,7 @@ import {
   createArticle,
   uploadImage,
 } from "@/requester.js";
+import { srcToFile } from "@/helpers.js";
 import ArticleContent from "@/components/ArticleContent.vue";
 import { VueEditor } from "vue2-editor";
 import VueRecaptcha from "vue-recaptcha";
@@ -339,17 +340,6 @@ export default {
     },
     expireHandler: function() {
       this.captchaResponse = "";
-    },
-    srcToFile: function(src) {
-      let byteString = atob(src.split(",")[1]);
-      let ab = new ArrayBuffer(byteString.length);
-      let ia = new Uint8Array(ab);
-      for (let i = 0; i < byteString.length; i++) {
-        ia[i] = byteString.charCodeAt(i);
-      }
-      let blob = new Blob([ia], { type: "image/jpeg" });
-      let file = new File([blob], "image.jpg");
-      return file;
     },
   },
   async mounted() {
