@@ -315,7 +315,6 @@ export default {
         alert(res.err.name + "\n" + res.err.message);
       }
       this.publishing = false;
-      alert(this.prevImage); // debug
     },
     handleImageAdded: async function(
       file,
@@ -366,7 +365,6 @@ export default {
           this.title = res.data.title;
           this.body = res.data.body;
           this.tags = res.data.tags;
-          console.log(res.data.imageUrl);
           this.prevImage = await srcToFile(res.data.imageUrl);
         }
       } else {
