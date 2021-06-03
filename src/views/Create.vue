@@ -367,7 +367,7 @@ export default {
           this.body = res.data.body;
           this.tags = res.data.tags;
           console.log(res.data.imageUrl);
-          this.prevImage = srcToFile(res.data.imageUrl);
+          this.prevImage = await srcToFile(res.data.imageUrl);
         }
       } else {
         this.$emit("errored", {
