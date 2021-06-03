@@ -364,10 +364,10 @@ export default {
           this.updateId = -1;
         } else {
           this.title = res.data.title;
-          this.prevImage = srcToFile(res.data.imageUrl);
-          this.prevImage.src = res.data.imageUrl;
           this.body = res.data.body;
           this.tags = res.data.tags;
+          console.log(res.data.imageUrl);
+          this.prevImage = srcToFile(res.data.imageUrl);
         }
       } else {
         this.$emit("errored", {
