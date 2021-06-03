@@ -314,6 +314,7 @@ export default {
         alert(res.err.name + "\n" + res.err.message);
       }
       this.publishing = false;
+      alert(this.prevImage); // debug
     },
     handleImageAdded: async function(
       file,
