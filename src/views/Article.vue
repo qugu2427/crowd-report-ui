@@ -56,7 +56,7 @@
             </v-btn>
           </a>
           <!-- Reddit -->
-          <a :href="'https://www.reddit.com/submit?url='+shareUrl" class="text-decoration-none">
+          <a :href="'https://www.reddit.com/submit?url='+shareUrl+'&title='+title" class="text-decoration-none">
             <v-btn
               fab
               color="#ff6314"
