@@ -29,36 +29,45 @@
           :body="body"
         ></ArticleContent>
         <div class="text-center my-1">
-          <v-btn
-            fab
-            color="#1DA1F2"
-            small
-            depressed
-            class="mx-1"
-            aria-label="twitter"
-          >
-            <v-icon color="white">mdi-twitter</v-icon>
-          </v-btn>
-          <v-btn
-            fab
-            color="#4267B2"
-            small
-            depressed
-            class="mx-1"
-            aria-label="facebook"
-          >
-            <v-icon color="white">mdi-facebook</v-icon>
-          </v-btn>
-          <v-btn
-            fab
-            color="#ff6314"
-            small
-            depressed
-            class="mx-1"
-            aria-label="reddit"
-          >
-            <v-icon color="white">mdi-reddit</v-icon>
-          </v-btn>
+          <!-- Twitter -->
+          <a :href="'https://twitter.com/intent/tweet?text='+shareUrl" class="text-decoration-none">
+            <v-btn
+              fab
+              color="#1DA1F2"
+              small
+              depressed
+              class="mx-1"
+              aria-label="twitter"
+            >
+              <v-icon color="white">mdi-twitter</v-icon>
+            </v-btn>
+          </a>
+          <!-- Facebook -->
+          <a :href="'https://www.facebook.com/sharer/sharer.php?u='+shareUrl" class="text-decoration-none">
+            <v-btn
+              fab
+              color="#4267B2"
+              small
+              depressed
+              class="mx-1"
+              aria-label="facebook"
+            >
+              <v-icon color="white">mdi-facebook</v-icon>
+            </v-btn>
+          </a>
+          <!-- Reddit -->
+          <a :href="'https://www.reddit.com/submit?url='+shareUrl" class="text-decoration-none">
+            <v-btn
+              fab
+              color="#ff6314"
+              small
+              depressed
+              class="mx-1"
+              aria-label="reddit"
+            >
+              <v-icon color="white">mdi-reddit</v-icon>
+            </v-btn>
+          </a>
 
           <!-- Heart, search, report buttons -->
           <div class="my-4">
@@ -124,7 +133,9 @@
                 depressed
                 class="mx-2 rounded-0"
                 color="error"
-                v-if="googleId == authorGoogleId || (forceShowDelete && signedIn)"
+                v-if="
+                  googleId == authorGoogleId || (forceShowDelete && signedIn)
+                "
               >
                 edit
                 <v-icon right>mdi-lead-pencil</v-icon>
@@ -164,6 +175,7 @@ export default {
       hearted: false,
       hearting: true,
       forceShowDelete: false,
+      shareUrl: `https://www.crowdreport.me/articles/${this.$route.params.id}`
     };
   },
   methods: {
