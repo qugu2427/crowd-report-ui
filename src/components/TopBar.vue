@@ -70,7 +70,7 @@
           </v-list-item>
         </v-list>
       </v-menu>
-      <a :href="loginUrl" style="text-decoration: none" v-else-if="!loading">
+      <a :href="loginUrl" class="text-decoration-none" v-else-if="!loading">
         <v-btn outlined>
           <v-icon left>mdi-google</v-icon>
           Sign In

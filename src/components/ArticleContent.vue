@@ -42,7 +42,7 @@ export default {
     created: { type: String, default: "" },
     tags: {
       type: Array,
-      default: function() {
+      default: function () {
         return [];
       },
     },
