@@ -52,9 +52,6 @@ export default {
   methods: {
     dateAsString,
   },
-  mounted() {
-    console.log(this.body);
-  },
 };
 </script>
 
