@@ -44,13 +44,24 @@ export default {
   methods: {
     dateAsString,
   },
+  mounted() {
+    console.log(this.body);
+  },
 };
 </script>
 
-<style lang="css" scoped>
+<!-- styles cannot be scoped -->
+<style lang="css">
 @import "~vue2-editor/dist/vue2-editor.css";
+.articleBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .articleBody img {
   max-width: 100%;
+  height: auto;
+  justify-self: center;
 }
 .articleBody iframe {
   width: 100%;
