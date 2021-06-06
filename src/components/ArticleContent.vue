@@ -1,17 +1,25 @@
 <template>
   <v-container style="max-width: 700px">
-    <nav class="text-center">
+    <div class="d-flex flex-wrap justify-center align-center">
       <router-link
         v-for="tag in tags"
         :key="tag"
         :to="'/?search=' + tag"
         class="text-decoration-none"
       >
-        <v-chip class="mx-1 my-1" outlined>
+        <v-chip
+          @click="
+            {
+              //pass
+            }
+          "
+          class="mx-1 my-1"
+          outlined
+        >
           {{ tag }}
         </v-chip>
       </router-link>
-    </nav>
+    </div>
     <article>
       <header class="text-center">
         <h1 class="text-h3 my-3 font-weight-bold font-italic">{{ title }}</h1>
